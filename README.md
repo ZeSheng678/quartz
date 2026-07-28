@@ -1,17 +1,48 @@
-# Quartz v5
+# 🌱 数字花园
 
-> “[One] who works with the door open gets all kinds of interruptions, but [they] also occasionally gets clues as to what the world is and what might be important.” — Richard Hamming
+基于 [Quartz](https://quartz.jzhao.xyz/) 搭建的个人知识库，将 Obsidian 笔记发布为网站。
 
-Quartz is a set of tools that helps you publish your [digital garden](https://jzhao.xyz/posts/networked-thought) and notes as a website for free.
+## 功能
 
-🔗 Read the documentation and get started: https://quartz.jzhao.xyz/
+- ✅ Obsidian Wikilinks 双链
+- ✅ 反向链接 (Backlinks)
+- ✅ 知识图谱 (Graph View)
+- ✅ 全文搜索
+- ✅ 深色模式
+- ✅ 标签系统
+- ✅ 自动部署到 GitHub Pages
 
-[Join the Discord Community](https://discord.gg/cRFFHYye7t)
+## 本地开发
 
-## Sponsors
+```bash
+# 安装依赖
+npm install --registry=https://registry.npmjs.org --include=dev
 
-<p align="center">
-  <a href="https://github.com/sponsors/jackyzha0">
-    <img src="https://cdn.jsdelivr.net/gh/jackyzha0/jackyzha0/sponsorkit/sponsors.svg" />
-  </a>
-</p>
+# 启动开发服务器
+npx quartz build --serve
+
+# 访问 http://localhost:8080
+```
+
+## 部署
+
+推送到 `main` 分支后，GitHub Actions 自动构建并部署到 GitHub Pages。
+
+```bash
+git add .
+git commit -m "update content"
+git push
+```
+
+## 目录结构
+
+```
+content/          # 笔记内容（markdown 文件）
+quartz.config.yaml  # 站点配置
+quartz/           # Quartz 框架源码
+.github/workflows/ # CI/CD 配置
+```
+
+## 配置
+
+编辑 `quartz.config.yaml` 修改站点标题、语言、主题等。
