@@ -1,11 +1,11 @@
 # yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
 configuration:
-  pageTitle: Liaozesheng 的数字花园
+  pageTitle: zesheng 的数字花园
   pageTitleSuffix: ""
   enableSPA: true
   enablePopovers: true
   locale: zh-CN
-  baseUrl: ZeSheng678.github.io/quartz-demo
+  baseUrl: ZeSheng678.github.io/quartz
   ignorePatterns:
     - private
     - templates
