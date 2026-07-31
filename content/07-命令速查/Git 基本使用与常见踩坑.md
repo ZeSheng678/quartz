@@ -1,5 +1,4 @@
-### 1.git学习
-#### git忽略文件 .gitignore
+## git忽略文件 .gitignore
 ```git
 HELP.md
 target/
@@ -55,7 +54,7 @@ build/
 *.cmd
 ```
 
-#### 本地仓库
+## 本地仓库
 最强大的分布式版本控制系统，linus大牛
 
 ```plain
@@ -86,39 +85,39 @@ D -->|git pull 取回更新| C
 C -->|git checkout 取出旧版本| A
 ```
 
-###### 1.git初始化
+#### 1.git初始化
 ```plain
 git init
 初始化建立一个桌面
 ```
 
-###### 2.添加书籍至书桌暂存区
+#### 2.添加书籍至书桌暂存区
 ```plain
 git add git学习文档.md
 git add .            可添加仓库中所有改动
 ```
 
-###### 3.将暂存区的书籍整理到书架
+#### 3.将暂存区的书籍整理到书架
 ```plain
 git commit -m "wrote the first file"
 ```
 
-###### 4.掌握书桌当前的状态
+#### 4.掌握书桌当前的状态
 ```plain
 git status
 ```
 
-###### 5.看具体修改了什么内容
+#### 5.看具体修改了什么内容
 ```plain
 git diff
 ```
 
-###### 6.显示提交日志
+#### 6.显示提交日志
 ```plain
 git log
 ```
 
-###### 7.回退版本
+#### 7.回退版本
 ```plain
 版本号没必要写全，前几位就可以了，Git会自动去找。当然也不能只写前一两位，因为Git可能会找到多个版本号，就无法确定是哪一个了。
 
@@ -130,7 +129,7 @@ HEAD^^^ 代表 上上上的版本
 HEAD~100 代表上100个的那个版本
 ```
 
-###### 8.回到未来
+#### 8.回到未来
 ```plain
 如果在过去想回到未来的版本
 需要知道未来那个版本的commit_id
@@ -143,17 +142,17 @@ HEAD~100 代表上100个的那个版本
 在Git中，总是有后悔药可以吃的。当你用$ git reset --hard HEAD^回退到过去的版本时，再想恢复到未来版本，就必须找到未来版本的commit id。Git提供了一个命令git reflog用来记录你的每一次命令：
 ```
 
-###### 9.记录每一次命令
+#### 9.记录每一次命令
 ```plain
 git reflog      查看每次得到的commit_id是多少，可以回到未来的版本，即使关闭了对话框
 ```
 
-###### 10.查看工作区和版本库
+#### 10.查看工作区和版本库
 ```plain
 git diff HEAD --文件名
 ```
 
-###### 11.git checkout -- file
+#### 11.git checkout -- file
 ```plain
 将git 还未提交到暂存区的修改 直接还原到最近一次git commit或git add时的状态。使用git checkout -- file     世界直接清净了
 
@@ -164,7 +163,7 @@ git diff HEAD --文件名
 一种是廖雪峰git学习文档.md已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
 ```
 
-###### 12.git reset HEAD file
+#### 12.git reset HEAD file
 ```plain
 上面 git checkout -- file 只能将git add 之前的修改操作进行回退
 如果我们已经将不需要的修改 提交到了 暂存区，那么就需要使用git reset HEAD file 将file文件退回到工作区
@@ -173,7 +172,7 @@ git reset HEAD 廖雪峰git学习文档.md
 退回到工作区之后，如果不需要此次修改，可以通过 git checkout -- 廖雪峰git学习文档.md 将文件修改还原
 ```
 
-###### 13.删除文件
+#### 13.删除文件
 ```plain
 一般我们在工作区，将文件test.md右键菜单删除了
 1.的确是需要删除这个文件test.md，那么需要我们也将版本库中的对应文件test.md删除
@@ -185,8 +184,8 @@ git rm test.md
 git checkout -- test.md
 ```
 
-#### 远程仓库
-###### 1.创建SSH密钥
+## 远程仓库
+#### 1.创建SSH密钥
 ```plain
 第1步：创建SSH Key。在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：
 
@@ -197,7 +196,7 @@ $ ssh-keygen -t rsa -C "liaozesheng@163.com"
 如果一切顺利的话，可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。
 ```
 
-###### 2.本地仓库推送远程仓库
+#### 2.本地仓库推送远程仓库
 ```plain
 可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到GitHub仓库。
 
@@ -216,7 +215,7 @@ git push
  
 ```
 
-###### 3.删除远程库
+#### 3.删除远程库
 ```plain
 如果添加的时候地址写错了，或者就是想删除远程库，可以用git remote rm <name>命令。使用前，建议先用git remote -v查看远程库信息：
 git remote -v
@@ -225,7 +224,7 @@ git remote remove origin
 此处的“删除”其实是解除了本地和远程的绑定关系，并不是物理上删除了远程库。远程库本身并没有任何改动。要真正删除远程库，需要登录到GitHub，在后台页面找到删除按钮再删除。
 ```
 
-###### 4.从远程库克隆
+#### 4.从远程库克隆
 ```plain
 现有远程仓库，再创建本地仓库
 git clone https://gitee.com/liao-zesheng/git_study.git
@@ -235,8 +234,8 @@ git clone git@gitee.com:liao-zesheng/git_study.git
 我们勾选Initialize this repository with a README，这样GitHub会自动为我们创建一个README.md文件。创建完毕后，可以看到README.md文件：
 ```
 
-#### 分支管理
-###### 1.创建和合并分支
+## 分支管理
+#### 1.创建和合并分支
 ```plain
 HEAD严格来说不是指向提交，而是指向master，master才是指向提交的，所以，HEAD指向的就是当前分支。
 
@@ -262,7 +261,7 @@ Fast-forward信息，Git告诉我们，这次合并是“快进模式”，也�
 git branch -d dev
 ```
 
-###### 2.switch
+#### 2.switch
 ```plain
 我们注意到切换分支使用git checkout <branch>，而前面讲过的撤销修改则是git checkout -- <file>，同一个命令，有两种作用，确实有点令人迷惑。
 
@@ -273,7 +272,7 @@ git switch -c dev     更合理
 git switch dev         切换到dev分支
 ```
 
-###### 3.解决冲突
+#### 3.解决冲突
 ```plain
 有冲突时，需要解决冲突，才能进行合并
 Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容
@@ -287,8 +286,8 @@ git push origin main
 git log --graph --pretty=oneline --abbrev=commit  来查看分支的合并情况
 ```
 
-#### 日常问题合集
-###### clone 仓库时，报错 <font style="color:rgb(51, 51, 51);">error: RPC failed; curl 18 transfer closed with outstanding read data remaining</font>
+## 日常问题合集
+#### clone 仓库时，报错 <font style="color:rgb(51, 51, 51);">error: RPC failed; curl 18 transfer closed with outstanding read data remaining</font>
 ![](https://cdn.nlark.com/yuque/0/2024/png/46554067/1725353103906-9971d60a-1ca5-4c42-991b-3bd1001a2c54.png)
 
 解决思路：
@@ -302,7 +301,7 @@ git config --global http.lowSpeedLimit 0
 git config --global http.lowSpeedTime 999999
 ```
 
-###### 提交规范
+#### 提交规范
 1. 分支命名
     1. <font style="color:rgb(0, 0, 0);">日期_姓名首字母缩写_功能单词，如：</font>`<font style="color:rgb(19, 148, 216);">20240905_lzs_buildFramework</font>`
 2. commit提交规范	
@@ -327,7 +326,7 @@ ci:       与CI（持续集成服务）有关的改动
 chore:    不修改src或者test的其余修改，例如构建过程或辅助工具的变动
 ```
 
-###### <font style="color:rgb(34, 34, 38);">Couldn‘t connect to server</font>
+#### <font style="color:rgb(34, 34, 38);">Couldn‘t connect to server</font>
 解决使用git时遇到Failed to connect to github.com port 443 after 21090 ms: Couldn‘t connect to server
 
 <font style="color:rgb(51, 51, 51);background-color:rgb(245, 246, 247);">如果是在挂着梯子的情况下拉取或者推送代码的时候是否遇到了报错，一般出现这种问题都是开过VPN导致的本机系统端口号和git的端口号不一致导致的。</font>
@@ -347,7 +346,7 @@ git config --global --unset https.proxy
 
 
 
-###### git设置代理
+#### git设置代理
 我们日常开了全局系统代理可能发现对于git并不生效，git还是没有使用代理的地址去github上拉去项目，这是因为git的代理是git本身有设置项。
 
 ①设置全局代理
@@ -407,7 +406,7 @@ git config --global --list
 
 
 
-###### 解决每次pull输入认证信息
+#### 解决每次pull输入认证信息
 ①使用windows的凭据管理器来解决
 
 ```bash
@@ -420,7 +419,7 @@ git pull origin # 输入用户名和密码
 
 
 
-###### 忽略ssl证书，直接使用https
+#### 忽略ssl证书，直接使用https
 报错
 
 ```bash
@@ -438,7 +437,7 @@ git config --global http.https://gitlab.ext-216.com/.sslVerify false
 ```
 
 
-###### 为什么显示一堆 \360\237… 八进制数字？
+#### 为什么显示一堆 \360\237… 八进制数字？
 核心原因：**Git 默认用八进制转义打印中文 / Emoji / 特殊字符文件名**
 1. 你文件名里有：📐 Emoji、中文汉字、空格
 2. Git 在终端输出时，为了兼容老式不支持 UTF-8 的终端，把非 ASCII 字符转成了八进制编码 `\xxx`
@@ -456,7 +455,7 @@ git config --global http.https://gitlab.ext-216.com/.sslVerify false
 git config --global core.quotepath false
 ```
 
-###### Git 取消跟踪目录、彻底移出仓库完整操作
+#### Git 取消跟踪目录、彻底移出仓库完整操作
 
 1. 先在 `.gitignore` 加入忽略规则
 2. 从 Git 索引中移除目录
