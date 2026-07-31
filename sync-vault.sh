@@ -33,10 +33,21 @@ ok()  { echo -e "\033[32m✅ $*\033[0m"; }
 err() { echo -e "\033[31m❌ $*\033[0m"; }
 
 # ========== 1. 拉取最新 vault ==========
+log "================$(date +'%y-%m-%d %H:%M:%S')==================="
 log "拉取 obsidian-vault 最新内容..."
-cd "$VAULT_DIR"
-git pull --quiet
-ok "vault 已更新到 $(git log -1 --format='%h %s')"
+cd "$VAULT_DIR" || exit 1
+git fetch origin
+REMOTE_NEW=$(git log HEAD..origin/main --oneline)
+
+# 检查是否有变更
+if [[ -n "$REMOTE_NEW" ]]; then
+    git pull --quiet origin main
+    ok "vault 已更新到 $(git log -1 --format='%h %s')"
+    echo "$REMOTE_NEW"
+else
+    ok "vault没有变更，提前结束"
+    exit 0
+fi
 
 # ========== 2. 同步目录到 Quartz content ==========
 log "同步 ${#SYNC_DIRS[@]} 个目录到 Quartz..."

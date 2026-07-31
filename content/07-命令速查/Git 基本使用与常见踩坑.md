@@ -437,7 +437,7 @@ git config --global http.https://gitlab.ext-216.com/.sslVerify false
 ```
 
 
-#### 为什么显示一堆 \360\237… 八进制数字？
+#### 为什么显示一堆 \360\237… 八进制数字？中文乱码
 核心原因：**Git 默认用八进制转义打印中文 / Emoji / 特殊字符文件名**
 1. 你文件名里有：📐 Emoji、中文汉字、空格
 2. Git 在终端输出时，为了兼容老式不支持 UTF-8 的终端，把非 ASCII 字符转成了八进制编码 `\xxx`
@@ -469,4 +469,17 @@ git rm --cached -r 目录
 git add . 
 git commit -m "remove dir xxx from git track" 
 git push
+```
+
+#### Windows 默认换行符 CRLF告警
+![[Pasted image 20260731135541.png]]
+Windows 默认换行符 **CRLF**（回车 + 换行），Linux/Mac 是 **LF**（仅换行）
+Git 自动转换：提交时存 LF，拉到 Windows 自动转 CRLF，这条只是提示，不影响代码 / 笔记内容。
+
+**永久关掉这个警告（Windows 推荐执行）**
+```bash
+# 让Git自动处理换行，不再弹窗警告 
+git config --global core.autocrlf true 
+# 关闭路径引号（之前中文文件名乱码一并解决） 
+git config --global core.quotepath false
 ```
