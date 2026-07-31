@@ -1,11 +1,7 @@
+
 # ①systemd介绍
 Systemd 是 Rocky Linux 9.6（以及大多数现代 Linux 发行版）的默认初始化系统和服务管理器，取代了传统的 SysVinit 系统。
 它负责管理系统的启动、服务的运行、日志记录、定时任务等功能。Systemd 通过单元（units）文件以声明式的方式管理服务、设备、挂载点等资源，提供高效、并行化的启动流程和强大的依赖管理。
-REDACTED
-OBSIDIAN_VAULT_PATH=E:\Obsidian
-REDACTED
-
-REDACTED
 
 **如何读懂这个图片？**
 ![[Pasted image 20251027102240.png]]
@@ -264,7 +260,7 @@ proc-sys-fs-binfmt_misc.automount
 例：
 
 ```
-REDACTED
+dev-disk-by-uuid-xxx.swap
 ```
 
 功能：
