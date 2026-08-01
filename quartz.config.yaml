@@ -5,7 +5,7 @@ configuration:
   enableSPA: true
   enablePopovers: true
   locale: zh-CN
-  baseUrl: ZeSheng678.github.io/quartz
+  baseUrl: liaozesheng.github.io/quartz
   ignorePatterns:
     - private
     - templates
@@ -100,7 +100,7 @@ plugins:
   - source: "@quartz-community/og-image"
     enabled: false
   - source: "@quartz-community/cname"
-    enabled: true
+    enabled: false
   - source: "@quartz-community/canvas-page"
     enabled: true
   - source: "@quartz-community/content-page"
