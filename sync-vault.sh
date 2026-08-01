@@ -34,6 +34,10 @@ err() { echo -e "\033[31m❌ $*\033[0m"; }
 
 # ========== 1. 拉取最新 vault ==========
 log "================$(date +'%y-%m-%d %H:%M:%S')==================="
+log "拉取 quartz 最新内容"
+cd "$QUARTZ_DIR" || exit 1
+git pull --quiet origin main
+
 log "拉取 obsidian-vault 最新内容..."
 cd "$VAULT_DIR" || exit 1
 git fetch origin
