@@ -114,6 +114,7 @@ plugins:
     layout:
       position: left
       priority: 50
+# 关掉关系图谱
   - source: "@quartz-community/graph"
     enabled: false
     layout:
@@ -127,8 +128,9 @@ plugins:
       group: toolbar
       groupOptions:
         grow: true
+# 反向链接
   - source: "@quartz-community/backlinks"
-    enabled: true
+    enabled: false
     layout:
       position: right
       priority: 50
