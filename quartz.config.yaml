@@ -65,9 +65,15 @@ plugins:
   - source: "@quartz-community/github-flavored-markdown"
     enabled: true
     order: 40
+# 笔记的目录
   - source: "@quartz-community/table-of-contents"
     enabled: true
     order: 50
+    options:
+      maxDepth: 4              # 显示到第几级,默认 3
+      minEntries: 1            # 至少几个标题才显示目录,默认 1
+      collapseByDefault: true  # 默认折叠目录,默认 false
+      layout: modern           # modern(新版)/ legacy(旧版)
     layout:
       position: right
       priority: 30
