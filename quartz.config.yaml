@@ -115,7 +115,7 @@ plugins:
       position: left
       priority: 50
   - source: "@quartz-community/graph"
-    enabled: true
+    enabled: false
     layout:
       position: right
       priority: 10
@@ -169,7 +169,7 @@ plugins:
     enabled: true
     options:
       links:
-        GitHub: https://github.com/zesheng926
+        GitHub: https://github.com/liaozesheng
   - source: "@quartz-community/spacer"
     enabled: true
     options: {}
