@@ -1,3 +1,54 @@
+## Git操作一览
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '6px'}}}%%
+flowchart RL
+	subgraph 仓库操作
+		A1[git init<br/>初始化仓库]
+		A2[git clone<br/>克隆远程仓库]
+		A3[git status<br/>查看工作区状态]
+	end
+	subgraph 基本操作 
+		B1[git add<br/>添加到暂存区] 
+		B2[git commit<br/>提交到本地仓库] 
+		B3[git commit --amend<br/>修改最近提交] 
+	end 
+	subgraph 查看对比 
+		C1[git log<br/>查看提交历史] 
+		C2[git diff<br/>查看文件差异] 
+		C3[git show<br/>查看提交详情] 
+		C4[git blame<br/>逐行追溯作者] 
+	end 
+	subgraph 分支管理 
+		D1[git branch<br/>查看/创建分支] 
+		D2[git checkout<br/>切换分支] 
+		D3[git switch<br/>切换分支新版] 
+		D4[git merge<br/>合并分支] 
+		D5[git rebase<br/>变基操作] 
+	end 
+	subgraph 远程仓库 
+		E1[git remote<br/>管理远程地址] 
+		E2[git fetch<br/>下载远程更新] 
+		E3[git pull<br/>拉取并合并] 
+		E4[git push<br/>推送到远程] 
+	end 
+	subgraph 撤销回退 
+		F1[git restore<br/>撤销工作区修改] 
+		F2[git reset<br/>回退到指定版本] 
+		F3[git revert<br/>生成反向提交] 
+		F4[git cherry‑pick<br/>挑选特定提交] 
+	end 
+	subgraph 储藏管理 
+		G1[git stash<br/>暂存当前修改] 
+		G2[git stash pop<br/>恢复并删除] 
+		G3[git stash list<br/>查看暂存列表] 
+		G4[git stash apply<br/>恢复但不删除] 
+	end 
+	subgraph 标签管理 
+		H1[git tag<br/>创建标签] 
+		H2[git push --tags<br/>推送所有标签] 
+	end
+```
+
 ## git忽略文件 .gitignore
 ```git
 HELP.md
@@ -438,6 +489,7 @@ git config --global http.https://gitlab.ext-216.com/.sslVerify false
 
 
 #### 为什么显示一堆 \360\237… 八进制数字？中文乱码
+
 核心原因：**Git 默认用八进制转义打印中文 / Emoji / 特殊字符文件名**
 1. 你文件名里有：📐 Emoji、中文汉字、空格
 2. Git 在终端输出时，为了兼容老式不支持 UTF-8 的终端，把非 ASCII 字符转成了八进制编码 `\xxx`

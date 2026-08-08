@@ -1,10 +1,10 @@
 ---
-updated: 2026-07-23
+updated: 2026-08-04
 ---
 
 # 📚 Kubernetes 实用英语词汇全集
 
-> 小爪出品 · 累计 201 词 · 每日更新
+> 小爪出品 · 累计 211 词 · 每日更新
 
 ---
 
@@ -1430,4 +1430,82 @@ updated: 2026-07-23
 
 ---
 
-> 📅 最后更新：2026-07-23 | 累计 201 词 | 持续更新中 🐾
+> 📅 最后更新：2026-08-04 | 累计 211 词 | 持续更新中 🐾
+
+---
+
+## 第21期 — 工作负载、存储回收与镜像管理
+
+### 202. Workload
+
+- **音标**: /ˈwɜːrkloʊd/
+- **词义**: 工作负载；K8s 中对"跑在集群里的应用"的总称，由各类控制器管理，包括 Deployment、StatefulSet、DaemonSet、Job、CronJob 等
+- **例句**: Workloads in Kubernetes are managed by controllers such as Deployments, StatefulSets and Jobs, each defining how Pods should run.
+- **🪄 记忆**: Work(工作) + Load(负担/负载) → "干活的活儿"。在 K8s 里，Deployment、StatefulSet 这些控制器统称 Workload——你只管声明"我要跑什么"，控制器替你扛下"怎么跑、跑几个、挂了咋办"这些活。
+
+### 203. Reclaim
+
+- **音标**: /rɪˈkleɪm/
+- **词义**: 回收；PersistentVolume 的 `reclaimPolicy` 决定 PVC 删除后卷如何处理，可选值：Retain（保留）、Delete（删除）、Recycle（回收）
+- **例句**: When a PVC is deleted, the PersistentVolume's reclaim policy determines whether the underlying storage is retained, deleted, or recycled.
+- **🪄 记忆**: Re-(回) + Claim(索取/认领) → "把资源要回来"。PVC 删了，卷里存的数据怎么办？ReclaimPolicy 就是"财产处置条款"：Retain 留着自己处置（数据可能还在），Delete 直接删干净，Recycle 清空数据留给下家用。**生产环境务必搞懂，否则可能误删数据。**
+
+### 204. Template
+
+- **音标**: /ˈtempleɪt/
+- **词义**: 模板；Deployment 等 Workload 的 `spec.template` 字段，定义副本 Pod 的完整规格（容器、卷、探针、标签等），是"批量复制 Pod"的模具
+- **例句**: The Pod template in a Deployment defines the exact specification that every replica Pod is created from.
+- **🪄 记忆**: Template 源于拉丁语 templum（衡量规）→ 就像做月饼的模具，按下去一个模子，印出一个个一模一样的 Pod。改 Pod 配置只需改 template，K8s 会自动滚动更新所有副本。
+
+### 205. TTL (Time To Live)
+
+- **音标**: /ˌtiː tiː ˈel/
+- **词义**: 生存时间；资源存活时限，到期自动清理。K8s 中 TTLAfterFinished 控制器可自动删除已完成的 Job，DNS 记录、容器镜像层也各有 TTL 机制
+- **例句**: The TTLAfterFinished controller deletes finished Jobs automatically once the configured TTL has elapsed, preventing cluster clutter.
+- **🪄 记忆**: Time(时间) To(到) Live(活) → "还能活多久"。跟罐头保质期一个道理：Job 跑完了留一堆尸体？设个 TTL，到期自动收尸。DNS 缓存、IP 封包也有 TTL——过期的就该消失，别占地方。
+
+### 206. Registry
+
+- **音标**: /ˈredʒɪstri/
+- **词义**: 镜像仓库；存储、分发容器镜像的服务，如 Docker Hub、Harbor、Amazon ECR，Kubelet 按"镜像名:标签"从 Registry 拉取
+- **例句**: The kubelet pulls container images from the image registry specified in the Pod spec, such as docker.io/library/nginx:1.25.
+- **🪄 记忆**: Register(登记) + -y → "登记处/户籍册"。镜像都"登记"在仓库里，每个镜像名就是它的户籍地址（仓库/命名空间/镜像名:标签）。生产环境常用 Harbor 搭私有 Registry，内网拉取快还能过审。
+
+### 207. Digest
+
+- **音标**: /ˈdaɪdʒest/
+- **词义**: 摘要；镜像内容的 SHA256 哈希值，形如 `sha256:abc123...`，精确到具体构建产物，是镜像的"指纹"
+- **例句**: Pin your image to a specific digest to guarantee every deployment runs the exact same build, immune to tag overwrites.
+- **🪄 记忆**: 源自古法语 digeste（浓缩汇总）→ 镜像内容"浓缩"成一串 64 位哈希。标签(Tag)可以反复覆盖，但 Digest 永远指向同一个不可变内容——**生产环境用 digest 锁版本，比 Tag 靠谱一百倍。**
+
+### 208. Timeout
+
+- **音标**: /ˈtaɪmaʊt/
+- **词义**: 超时；操作超过设定时限仍未完成则放弃/报错。K8s 中探针有 timeoutSeconds，kubectl 请求有 --request-timeout，网关/负载均衡也各有超时配置
+- **例句**: If the container exceeds the probe's timeoutSeconds without responding, the liveness probe fails and Kubernetes restarts the container.
+- **🪄 记忆**: Time(时间) + Out(出去) → 时间"走完了"就退场。就像等公交车：等 5 分钟是耐心，等 50 分钟是犯傻——Timeout 就是那个"不等了，先干别的"的闹钟。系统里处处需要它，防止一个慢请求拖垮全局。
+
+### 209. Latency
+
+- **音标**: /ˈleɪtənsi/
+- **词义**: 延迟；从请求发出到收到响应的时间间隔，是衡量网络与 API 性能的核心指标（P99 延迟、网络延迟等）
+- **例句**: High network latency between nodes can significantly degrade the performance of distributed microservices.
+- **🪄 记忆**: Lat- 同 late（迟）→ "迟到的程度"。打游戏时的"网络延迟 50ms"就是它：延迟越低越流畅。K8s 里做性能分析必看三个指标：延迟(Latency)、吞吐(Throughput)、错误率(Error rate)——延迟是第一个要查的。
+
+### 210. Retry
+
+- **音标**: /rɪˈtraɪ/
+- **词义**: 重试；操作失败后再次尝试。K8s 中镜像拉取失败会自动 Retry（伴随指数退避 ImagePullBackOff），客户端 SDK 也常带自动重试逻辑
+- **例句**: The kubelet retries image pulls with exponential backoff when the registry is temporarily unavailable, avoiding a thundering herd.
+- **🪄 记忆**: Re-(再次) + Try(尝试) → "再试一次"。像拨号占线后"再拨一遍"。注意 K8s 的重试不是无脑循环，而是带 Backoff（指数退避）的——第一次等 10s、第二次 20s……越退越久，防止重启风暴打爆集群。
+
+### 211. Uptime
+
+- **音标**: /ˈʌptaɪm/
+- **词义**: 正常运行时间；服务持续可用、未中断的时长，SLA 中的 99.9%、99.99% 指的就是它，与 Downtime（停机时间）相对
+- **例句**: Multi-replica deployments with readiness probes help achieve the 99.99% uptime promised in the service level agreement.
+- **🪄 记忆**: Up(在线) + Time(时间) → "在线时长"。和上一期的 Downtime 正好是一对反义词：一年 525600 分钟，99.99% Uptime 意味着全年只能停机 52.6 分钟——K8s 的高可用设计（多副本、滚动更新、探针）全是为这 52.6 分钟而战。
+
+---
+
+> 📅 最后更新：2026-08-04 | 累计 211 词 | 持续更新中 🐾
