@@ -103,4 +103,4 @@ git commit -m "sync: $(date '+%Y-%m-%d %H:%M') vault update"
 git -c http.proxy="$PROXY" -c https.proxy="$PROXY" push
 
 ok "推送成功！Actions 自动部署中..."
-echo "🌐 访问: https://ZeSheng678.github.io/quartz/"
+echo "🌐 访问: https://liaozesheng.github.io/quartz/"
